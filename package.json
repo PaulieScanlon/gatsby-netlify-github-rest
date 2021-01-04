@@ -1,0 +1,45 @@
+{
+  "name": "gatsby-netlify-github-rest",
+  "version": "1.0.0",
+  "description": "Netlify Functions for GitHub REST API",
+  "main": "index.js",
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "prettier": "prettier --config ./.prettierrc.js --ignore-path ./.prettierignore --write \"**/*.{json,js,ts,tsx}\"",
+    "postinstall": "netlify-lambda install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prettier",
+      "pre-push": ""
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaulieScanlon/gatsby-netlify-github-rest.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PaulieScanlon/gatsby-netlify-github-rest/issues"
+  },
+  "homepage": "https://github.com/PaulieScanlon/gatsby-netlify-github-rest#readme",
+  "dependencies": {
+    "@octokit/rest": "^18.0.9",
+    "gatsby": "^2.29.3",
+    "gatsby-plugin-theme-ui": "^0.3.5",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "theme-ui": "^0.3.5"
+  },
+  "devDependencies": {
+    "@types/theme-ui": "^0.3.7",
+    "husky": "^4.3.0",
+    "netlify-lambda": "^2.0.1",
+    "prettier": "^2.1.2"
+  }
+}
