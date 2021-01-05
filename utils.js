@@ -25,6 +25,15 @@ module.exports = {
             })
           }
           return items
-        }, []),
+        }, [])
+        .map((item, index, array) => {
+          const { count } = item
+          const countTotal = array.reduce((a, b) => a + b.count, 0)
+
+          return {
+            ...item,
+            percent: Math.round((count / countTotal) * 100),
+          }
+        }),
     ),
 }

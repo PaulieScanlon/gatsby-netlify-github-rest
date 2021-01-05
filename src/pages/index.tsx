@@ -10,6 +10,7 @@ const IndexPage: FunctionComponent = () => {
           node {
             language
             count
+            percent
           }
         }
       }
