@@ -1,6 +1,7 @@
 const { octokit } = require('./client')
 
 const USER_NAME = 'PaulieScanlon'
+const CIRCUMFERENCE = 100
 
 module.exports = {
   getAllUserRepos: octokit
@@ -29,11 +30,16 @@ module.exports = {
         .map((item, index, array) => {
           const { count } = item
           const countTotal = array.reduce((a, b) => a + b.count, 0)
-
+          const p = Math.round((count / countTotal) * 100)
+          const r = CIRCUMFERENCE - p
+          const o = CIRCUMFERENCE - p
           return {
             ...item,
-            percent: Math.round((count / countTotal) * 100),
+            percent: p,
+            remainder: r,
+            circumference: CIRCUMFERENCE,
           }
-        }),
+        })
+        .sort((a, b) => b.percent - a.percent),
     ),
 }
