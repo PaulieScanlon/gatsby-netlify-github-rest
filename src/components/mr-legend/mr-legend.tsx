@@ -44,7 +44,7 @@ export const MrLegend: FunctionComponent<IMrLegendProps> = ({ data }) => {
               />
               <Text>{language}</Text>
             </Grid>
-            <Text sx={{ fontWeight: 'bold' }}>{percent}</Text>
+            <Text sx={{ fontWeight: 'bold' }}>{`${Math.abs(percent).toFixed(2)}%`}</Text>
           </Grid>
         )
       })}

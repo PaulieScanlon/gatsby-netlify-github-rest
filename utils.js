@@ -30,7 +30,7 @@ module.exports = {
         .map((item, index, array) => {
           const { count } = item
           const countTotal = array.reduce((a, b) => a + b.count, 0)
-          const p = Math.round((count / countTotal) * 100)
+          const p = (count / countTotal) * 100
           const r = CIRCUMFERENCE - p
           const o = CIRCUMFERENCE - p
           return {
