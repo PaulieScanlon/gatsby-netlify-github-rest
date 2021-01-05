@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { Container, Grid, Box, Heading, Text, Divider } from 'theme-ui'
 
 import { MrCharty } from '../components/mr-charty'
+import { MrLegend } from '../components/mr-legend/mr-legend'
 
 const TestPage: FunctionComponent = () => {
   const chartData = [
@@ -40,12 +41,13 @@ const TestPage: FunctionComponent = () => {
       >
         <Grid>
           <Heading as="h2">Test Data</Heading>
-          <Text>Test MrCharty with static data, "count" is not really required FYI</Text>
-          <Box as="pre" variant="styles.pre">
-            {JSON.stringify(chartData, null, 2)}
-          </Box>
-          <Box sx={{ maxWidth: 300 }}>
+          <Text sx={{ minHeight: 70 }}>Test MrCharty with static data, "count" is not really required FYI</Text>
+          <Box sx={{ maxWidth: 300, mx: 'auto' }}>
             <MrCharty data={chartData} />
+            <MrLegend data={chartData} />
+          </Box>
+          <Box as="pre" variant="styles.pre" sx={{ mb: 4 }}>
+            {JSON.stringify(chartData, null, 2)}
           </Box>
         </Grid>
       </Grid>

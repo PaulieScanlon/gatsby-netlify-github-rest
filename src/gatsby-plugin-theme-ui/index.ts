@@ -4,7 +4,7 @@ export default {
     background: '#ffffff',
     gray: '#f3f3f3',
     primary: '#FF5BA3',
-    secondary: '#00C4FF',
+    secondary: '#00FF00',
   },
   fonts: {
     body: 'system-ui',
@@ -24,6 +24,16 @@ export default {
   styles: {
     root: {
       fontFamily: 'body',
+    },
+    a: {
+      color: 'primary',
+      transition: '.2s linear color',
+      ':hover': {
+        color: 'text',
+      },
+      ':focus': {
+        outlineColor: 'primary',
+      },
     },
     pre: {
       fontSize: 0,
