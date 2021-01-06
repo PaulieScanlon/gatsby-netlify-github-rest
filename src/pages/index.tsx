@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import fetch from 'isomorphic-fetch'
 import { graphql, useStaticQuery } from 'gatsby'
-import { Container, Grid, Flex, Box, Spinner, Heading, Text, Divider } from 'theme-ui'
+import { Container, Grid, Flex, Box, Spinner, Heading, Text, Divider, Link } from 'theme-ui'
 
 import { format, parseISO } from 'date-fns'
 
@@ -44,7 +44,9 @@ const IndexPage: FunctionComponent = () => {
     })
       .then((response) => response.json())
       .then((response) => {
-        setIsLoading(false)
+        setTimeout(() => {
+          setIsLoading(false)
+        }, 2000)
         setClientData(response.allLanguages)
       })
       .catch((error) => {
@@ -61,7 +63,26 @@ const IndexPage: FunctionComponent = () => {
           mb: 2,
         }}
       >
-        <Heading as="h1">gatsby-netlify-github-rest</Heading>
+        <Heading as="h1">
+          <Link
+            sx={{ color: 'secondary' }}
+            href="https://github.com/PaulieScanlon/gatsby-netlify-github-rest"
+            target="_blank"
+            rel="noopener"
+          >
+            gatsby-netlify-github-rest
+          </Link>
+        </Heading>
+        <Text>
+          <Link
+            sx={{ color: 'secondary' }}
+            href="https://paulie.dev/posts/2021/01/gatsby-netliyf-github-rest/"
+            target="_blank"
+            rel="noopener"
+          >
+            Use Netlify Functions and the GitHub REST API to add Data Visualization to your Gatsby blog
+          </Link>
+        </Text>
         <Divider />
       </Grid>
       <Grid
@@ -73,8 +94,8 @@ const IndexPage: FunctionComponent = () => {
           <Grid>
             <Heading as="h2">Server Data</Heading>
             <Text>Data requested using GraphQL from sourceNodes created in gatsby-node at build time</Text>
-            <Text sx={{ fontSize: 0, fontWeight: 'bold', color: 'secondary', p: 2, backgroundColor: 'text' }}>
-              Last Updated: {`${format(parseISO(serverQuery.date.value), 'd MMM y')}`}
+            <Text sx={{ fontSize: 0, fontWeight: 'bold', color: 'tertiary', p: 2, backgroundColor: 'text' }}>
+              Last Updated: {`${format(parseISO(serverQuery.date.value), 'PP - @p')}`}
             </Text>
             <Box sx={{ maxWidth: 300, mx: 'auto' }}>
               <MrCharty data={serverData} />
@@ -89,14 +110,14 @@ const IndexPage: FunctionComponent = () => {
           <Grid>
             <Heading as="h2">Client Data</Heading>
             <Text>Data requested using fetch from a Netlify Serverless Function in React.useEffect at run time</Text>
-            <Text sx={{ fontSize: 0, fontWeight: 'bold', color: 'secondary', p: 2, backgroundColor: 'text' }}>
-              Last Updated: {`${format(new Date(), 'd MMM y')}`}
+            <Text sx={{ fontSize: 0, fontWeight: 'bold', color: 'tertiary', p: 2, backgroundColor: 'text' }}>
+              Last Updated: {`${format(new Date(), 'PP - @p')}`}
             </Text>
 
             {hasError ? <Text sx={{ textAlign: 'center', color: 'darkRed' }}>{hasError}</Text> : null}
             {isLoading ? (
-              <Flex sx={{ justifyContent: 'center' }}>
-                <Spinner />
+              <Flex sx={{ alignItems: 'center', justifyContent: 'center', height: 300 }}>
+                <Spinner variant="styles.spinner" />
               </Flex>
             ) : null}
             {!hasError && !isLoading && clientData ? (

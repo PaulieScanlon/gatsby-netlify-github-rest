@@ -2,6 +2,7 @@
 import { FunctionComponent } from 'react'
 import { jsx, Box, Text, Link } from 'theme-ui'
 import { rotate } from '@theme-ui/color'
+import { keyframes } from '@emotion/react'
 
 import { IStatistic } from '../../types'
 
@@ -37,6 +38,7 @@ export const MrCharty: FunctionComponent<IMrChartyProps> = ({ data }) => {
         <title>Doughnut Chart of GitHub user languages</title>
         {data.map((statistic: IStatistic, index: number) => {
           const { language, percent, remainder, circumference } = statistic
+
           return (
             <circle
               key={index}
@@ -45,15 +47,25 @@ export const MrCharty: FunctionComponent<IMrChartyProps> = ({ data }) => {
               sx={{
                 stroke: rotate('primary', (90 / data.length) * index),
                 fill: 'transparent',
+                animationTimingFunction: 'cubic-bezier',
+                animationFillMode: 'forwards',
+                animationDuration: '1s',
+                animationName: keyframes({
+                  '0%': {
+                    strokeDashoffset: '0',
+                  },
+                  '100%': {
+                    strokeDashoffset: `${
+                      circumference - data.slice(0, index).reduce((a, b) => a + b.percent, 0) + FIRST_OFFSET
+                    }`,
+                  },
+                }).toString(),
               }}
               cx={`${VIEW_BOX / 2}`}
               cy={`${VIEW_BOX / 2}`}
               r={RADIUS}
               strokeWidth="6"
               strokeDasharray={`${percent} ${remainder}`}
-              strokeDashoffset={`${
-                circumference - data.slice(0, index).reduce((a, b) => a + b.percent, 0) + FIRST_OFFSET
-              }`}
             />
           )
         })}

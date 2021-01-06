@@ -3,8 +3,9 @@ export default {
     text: '#000000',
     background: '#ffffff',
     gray: '#f3f3f3',
-    primary: '#FF5BA3',
-    secondary: '#00FF00',
+    primary: '#ff4081',
+    secondary: '#2196f3',
+    tertiary: '#76ff03',
   },
   fonts: {
     body: 'system-ui',
@@ -39,6 +40,9 @@ export default {
       fontSize: 0,
       p: 3,
       backgroundColor: 'gray',
+    },
+    spinner: {
+      color: 'text',
     },
   },
   layout: {
