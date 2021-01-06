@@ -1,4 +1,4 @@
-const { getAllUserRepos } = require('../../utils')
+const { getAllUserRepos } = require('../../query')
 
 exports.handler = async (event, context, callback) => {
   await getAllUserRepos.then((response) => {

@@ -1,4 +1,4 @@
-const { getAllUserRepos } = require('./utils')
+const { getAllUserRepos } = require('./query')
 
 exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => {
   const { createNode } = actions
